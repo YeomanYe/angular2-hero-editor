@@ -1,22 +1,33 @@
+import {ActionContext, Commit} from "vuex";
 
-let username:any;
 
+export interface State {
+    username: string | null,
+    password: string | null
+}
+
+const state: State = {
+    username: null, password: null
+};
 const mutations = {
-    setUsername(state:any,username:string){
+    setUsername(state: State, username: string) {
         state.username = username;
+    },
+    setPassword(state: State, password: string) {
+        state.password = password;
     }
 };
 
 const actions = {
-    setUsername({commit},username:string){
-        commit('setUsername',username);
-    }
+    setUserInfo({commit}: ActionContext<State, any>, {password, username}: State) {
+        console.log('setUserInfo');
+        commit('setUsername', username);
+        commit('setPassword', password);
+    },
 };
 
 export default {
-    state:{
-        username
-    },
+    state,
     mutations,
     actions
 };

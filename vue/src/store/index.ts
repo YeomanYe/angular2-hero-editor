@@ -1,16 +1,15 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
+import Vuex, {Module} from 'vuex';
+import userInfo, {State as UserInfoState} from './modules/user-info';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-
-  },
-  mutations: {
-
-  },
-  actions: {
-
-  },
+    modules: {
+        userInfo
+    }
 });
+
+export interface State {
+    userInfo: UserInfoState
+}

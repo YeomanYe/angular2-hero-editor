@@ -6,18 +6,18 @@
                 <div class="login-head">
                     <h1>Login Form</h1>
                 </div>
-                <form>
+                <form class="loginForm">
                     <li>
-                        <input type="text" class="text" placeholder="admin"><a href="#" class=" icon user"></a>
+                        <input v-model="username" type="text" class="text" placeholder="admin"><a
+                            class=" icon user"></a>
                     </li>
                     <div class="clear"></div>
                     <li>
-                        <input type="password" placeholder="admin"> <a href="#" class="icon lock"></a>
+                        <input v-model="password" type="password" placeholder="admin"> <a class="icon lock"></a>
                     </li>
                     <div class="clear"></div>
-                    <div class="submit">
-                        <input type="submit" value="Sign in">
-                        <div class="clear"></div>
+                    <div class="button">
+                        <input @mousedown="login" type="button" value="Sign in">
                     </div>
 
                 </form>
@@ -25,141 +25,34 @@
         </div>
         <!--- footer --->
         <div class="footer">
-            <p>Copyright &copy; 2014.</p>
+            <p>Copyright &copy; 2018.</p>
         </div>
     </div>
 </template>
 
-<script>
-  import {Component, Prop, Vue} from 'vue-property-decorator';
+<script lang="ts">
+  // import Vue from 'vue';
+  import {Component, Vue} from 'vue-property-decorator';
+  import {Action} from 'vuex-class';
 
-  @Component
+  @Component({
+      data:()=>({
+          username:'',
+          password:''
+      })
+  })
   export default class Login extends Vue {
+    public username!: string;
+    public password!: string;
+    @Action setUserInfo!: any;
 
+    private login() {
+      this.setUserInfo({username: this.username, password: this.password});
+    }
   }
 </script>
 
 <style>
-    /* reset */
-    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 100%;
-        font: inherit;
-        vertical-align: baseline;
-    }
-
-    article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-        display: block;
-    }
-
-    ol, ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    blockquote, q {
-        quotes: none;
-    }
-
-    blockquote:before, blockquote:after, q:before, q:after {
-        content: '';
-        content: none;
-    }
-
-    table {
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
-
-    /* start editing from here */
-    a {
-        text-decoration: none;
-    }
-
-    .txt-rt {
-        text-align: right;
-    }
-
-    /* text align right */
-    .txt-lt {
-        text-align: left;
-    }
-
-    /* text align left */
-    .txt-center {
-        text-align: center;
-    }
-
-    /* text align center */
-    .float-rt {
-        float: right;
-    }
-
-    /* float right */
-    .float-lt {
-        float: left;
-    }
-
-    /* float left */
-    .clear {
-        clear: both;
-    }
-
-    /* clear float */
-    .pos-relative {
-        position: relative;
-    }
-
-    /* Position Relative */
-    .pos-absolute {
-        position: absolute;
-    }
-
-    /* Position Absolute */
-    .vertical-base {
-        vertical-align: baseline;
-    }
-
-    /* vertical align baseline */
-    .vertical-top {
-        vertical-align: top;
-    }
-
-    /* vertical align top */
-    .underline {
-        padding-bottom: 5px;
-        border-bottom: 1px solid #eee;
-        margin: 0 0 20px 0;
-    }
-
-    /* Add 5px bottom padding and a underline */
-    nav.vertical ul li {
-        display: block;
-    }
-
-    /* vertical menu */
-    nav.horizontal ul li {
-        display: inline-block;
-    }
-
-    /* horizontal menu */
-    img {
-        max-width: 100%;
-    }
-
-    /*end reset*/
-    body {
-        font-family: 'Droid Sans', sans-serif;
-        font-size: 100%;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        background-size: cover;
-    }
-
     .message.warning {
         background: rgba(255, 255, 255, 0.33);
         -moz-box-shadow: 0 0 0 3px rgba(56, 41, 32, 0.25);
@@ -182,13 +75,13 @@
         margin: 0 23px;
     }
 
-    form {
+    .loginForm {
         padding: 3em 2em;
         background: #F2F2F2;
 
     }
 
-    form li {
+    .loginForm li {
         border: 2px ridge rgba(187, 185, 189, 0.11);
         border-radius: 0.3em;
         -webkit-border-radius: 0.3em;
@@ -261,7 +154,7 @@
         padding-top: 3em;
     }
 
-    input[type="submit"] {
+    input[type="button"] {
         color: #fff;
         cursor: pointer;
         font-weight: 900;
@@ -278,7 +171,7 @@
         -o-border-radius: 0.5em;
     }
 
-    input[type="submit"]:hover {
+    input[type="button"]:hover {
         background: #fff;
         color: grey;
         border: 2px solid grey;
@@ -462,7 +355,7 @@
             padding-top: 0.4em;
         }
 
-        input[type="submit"] {
+        input[type="button"] {
             float: none;
             padding: 11px 0px;
             width: 52%;
