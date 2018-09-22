@@ -246,6 +246,7 @@ h4.cnt-c1 {
 
 .grid-pad.cnt-c1 {
     padding: 10px 0;
+    overflow: hidden;
 }
 
 .grid-pad.cnt-c1>[class*='col-'].cnt-c1:last-of-type {

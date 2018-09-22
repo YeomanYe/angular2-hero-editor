@@ -17,7 +17,9 @@
                     </li>
                     <div class="clear"></div>
                     <div class="button">
-                        <input @mousedown="login" type="button" value="Sign in">
+                        <router-link to="/home">
+                            <input @mousedown="login" type="button" value="Sign in">
+                        </router-link>
                     </div>
 
                 </form>
@@ -31,25 +33,25 @@
 </template>
 
 <script lang="ts">
-  // import Vue from 'vue';
-  import {Component, Vue} from 'vue-property-decorator';
-  import {Action} from 'vuex-class';
+    // import Vue from 'vue';
+    import {Component, Vue} from 'vue-property-decorator';
+    import {Action} from 'vuex-class';
+    import {mapModel} from '../helper/ViewHelper';
 
-  @Component({
-      data:()=>({
-          username:'',
-          password:''
-      })
-  })
-  export default class Login extends Vue {
-    public username!: string;
-    public password!: string;
-    @Action setUserInfo!: any;
+    @Component({
+        computed:{
+            ...mapModel(['username','password'])
+        }
+    })
+    export default class Login extends Vue {
+        /*public username!: string;
+        public password!: string;
+        @Action setUserInfo!: any;
 
-    private login() {
-      this.setUserInfo({username: this.username, password: this.password});
+        private login() {
+            this.setUserInfo({username: this.username, password: this.password});
+        }*/
     }
-  }
 </script>
 
 <style>
@@ -59,7 +61,7 @@
         -webkit-box-shadow: 0 0 0 3px rgba(56, 41, 32, 0.25);
         box-shadow: 0 0 0 3px rgba(56, 41, 32, 0.25);
         margin: 9% auto 0;
-        width: 26%;
+        width: 30%;
     }
 
     .login-head {

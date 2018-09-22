@@ -11,15 +11,9 @@ const STORE_USER_KEY = 'userInfo';
 const state: State = Storage.getItem(STORE_USER_KEY) || {username:'',password:''};
 const mutations = {
     setUsername(state: State, username: string) {
-        let storeObj:State = Storage.getItem(STORE_USER_KEY) || {};
-        storeObj.username = username;
-        Storage.setItem(STORE_USER_KEY,storeObj);
         state.username = username;
     },
     setPassword(state: State, password: string) {
-        let storeObj:State = Storage.getItem(STORE_USER_KEY) || {};
-        storeObj.password = password;
-        Storage.setItem(STORE_USER_KEY,storeObj);
         state.password = password;
     }
 };
