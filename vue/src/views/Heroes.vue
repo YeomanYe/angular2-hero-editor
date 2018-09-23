@@ -2,15 +2,14 @@
     <div>
         <h2 class="cnt-c3">My Heroes</h2>
         <ul class="cnt-c3 heroes">
-            <li class="cnt-c3">
-                <span class="cnt-c3 badge">15</span>
-                <span class="cnt-c3">Magneta</span>
-                <button class="cnt-c3 delete">x</button>
-            </li>
+            <hero-item v-for="item in allHeroes" :class="selectedHero.id === item.id ? 'selected' : ''"
+                       @select="onSelect" :selectId="selectedHero.id" :name="item.name" :id="item.id"/>
         </ul>
-        <div class="cnt-c3">
-            <h2 class="cnt-c3">MR. NICE is my hero</h2>
-            <button class="cnt-c3">view Details</button>
+        <div class="cnt-c3" :style="{display: selectedHero.name ? 'block' : 'none'}">
+            <h2 class="cnt-c3">MR. {{selectedHero.name}} is my hero</h2>
+            <router-link :to="{path:'./details/'+selectedHero.id}">
+                <button class="cnt-c3">view Details</button>
+            </router-link>
         </div>
         <add-hero/>
     </div>
@@ -19,11 +18,22 @@
 <script lang="ts">
     import Vue from 'vue';
     import {Component} from 'vue-property-decorator';
+    import {Getter} from 'vuex-class';
+    import {Hero} from '../store/modules/heroes';
     import AddHero from '../components/AddHero';
-    @Component({
-        components:{AddHero}
-    })
-    export default class Heroes extends Vue{
+    import HeroItem from '../components/HeroItem';
 
+    @Component({
+        data: () => ({selectedHero: {}}),
+        components: {AddHero, HeroItem}
+    })
+    export default class Heroes extends Vue {
+        private selectedHero: Hero;
+        @Getter('allHeroes') allHeroes;
+        @Getter('queryHeroById') queryHeroById;
+
+        private onSelect(id) {
+            this.selectedHero = this.queryHeroById(id);
+        }
     }
 </script>

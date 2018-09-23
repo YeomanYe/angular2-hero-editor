@@ -6,7 +6,7 @@ export interface State {
     password: string | null
 }
 
-const STORE_USER_KEY = 'userInfo';
+const STORE_USER_KEY = 'hero-editor-vue-userInfo';
 
 const state: State = Storage.getItem(STORE_USER_KEY) || {username:'',password:''};
 const mutations = {

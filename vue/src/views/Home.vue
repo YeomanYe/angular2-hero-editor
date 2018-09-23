@@ -2,8 +2,8 @@
     <div>
         <h1 class="cnt-c0">Tour of Heroes</h1>
         <nav class="cnt-c0">
-            <router-link to="./heroes">Heroes</router-link>
-            <router-link to="./dashboard">Dashboard</router-link>
+            <router-link to="/home/heroes">Heroes</router-link>
+            <router-link to="/home/dashboard">Dashboard</router-link>
         </nav>
         <router-view/>
     </div>

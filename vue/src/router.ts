@@ -18,7 +18,7 @@ let route = {
             path: '/home',redirect:'/home/dashboard', name: 'home', component: Home, props: {newsletterPopup: false}, children: [
                 {path: 'dashboard', name: 'dashboard', component: Dashboard},
                 {path: 'heroes', name: 'heroes', component: Heroes},
-                {path: 'details', name: 'details', component: Details},
+                {path: 'details/:id', name: 'details', component: Details},
             ],
         },
     ],
