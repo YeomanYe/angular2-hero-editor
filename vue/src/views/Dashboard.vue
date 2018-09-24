@@ -14,7 +14,7 @@
 <script lang="ts">
     import Vue from 'vue';
     import {Component} from 'vue-property-decorator';
-    import {Hero} from '../store/modules/heroes';
+    import {Hero} from '../store';
     import DetailItem from '../components/DashboardItem';
     import {Getter} from 'vuex-class';
     @Component({
@@ -22,7 +22,7 @@
         components:{DetailItem}
     })
     export default class Dashboard extends Vue {
-        private heroes:Array<Hero>;
+        private heroes:Hero[];
         private name:string;
         @Getter('queryHeroByName') queryByName;
 

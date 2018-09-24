@@ -8,18 +8,16 @@ export interface State {
 
 const STORE_USER_KEY = 'hero-editor-vue-userInfo';
 
-const state: State = Storage.getItem(STORE_USER_KEY) || {username:'',password:''};
+const state: State | any = Storage.getItem(STORE_USER_KEY) || {username:'',password:''};
 const mutations = {
     setUsername(state: State, username: string) {
-        let storeObj:State = Storage.getItem(STORE_USER_KEY) || {};
-        storeObj.username = username;
-        Storage.setItem(STORE_USER_KEY,storeObj);
+        state.username = username;
+        Storage.setItem(STORE_USER_KEY,state);
         state.username = username;
     },
     setPassword(state: State, password: string) {
-        let storeObj:State = Storage.getItem(STORE_USER_KEY) || {};
-        storeObj.password = password;
-        Storage.setItem(STORE_USER_KEY,storeObj);
+        state.password = password;
+        Storage.setItem(STORE_USER_KEY,state);
         state.password = password;
     }
 };

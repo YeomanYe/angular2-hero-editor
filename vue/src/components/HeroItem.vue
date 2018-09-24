@@ -11,18 +11,25 @@
     import {Component, Prop} from 'vue-property-decorator';
     import {Action} from 'vuex-class';
 
-    @Component
+    @Component({
+        data:()=>({isSelected:false})
+    })
     export default class HeroItem extends Vue {
-        @Prop() id;
-        @Prop() name;
+        @Prop() private id:number;
+        @Prop() private name:string;
+        private isSelected: boolean;
 
         @Action('delHero') private delHero;
 
         del(){
             console.log('id',this.id,'name',this.name);
             this.delHero(this.id);
+            if(this.isSelected){
+                this.$emit('select',0);
+            }
         }
         select(){
+            this.isSelected = true;
             this.$emit('select',this.id);
         }
     }

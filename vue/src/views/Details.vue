@@ -7,12 +7,13 @@
     import UpdateHero from '../components/UpdateHero';
     import {Component} from 'vue-property-decorator';
     import {Action,Getter} from 'vuex-class';
+    import {Hero} from "../store";
     @Component({
         data:()=>({hero:{}}),
         components:{UpdateHero}
     })
     export default class Details extends Vue {
-        private hero;
+        private hero:Hero;
         @Getter('queryHeroById') private queryById;
         created(){
             // console.log('router',this.$router);

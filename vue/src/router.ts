@@ -13,6 +13,7 @@ let route = {
     mode: 'history' as RouterMode,
     base: process.env.BASE_URL,
     routes: [
+        {path: '/', name: 'root', redirect:'/login'},
         {path: '/login', name: 'login', component: Login},
         {
             path: '/home',redirect:'/home/dashboard', name: 'home', component: Home, props: {newsletterPopup: false}, children: [

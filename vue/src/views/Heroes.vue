@@ -19,7 +19,7 @@
     import Vue from 'vue';
     import {Component} from 'vue-property-decorator';
     import {Getter} from 'vuex-class';
-    import {Hero} from '../store/modules/heroes';
+    import {Hero} from '../store';
     import AddHero from '../components/AddHero';
     import HeroItem from '../components/HeroItem';
 

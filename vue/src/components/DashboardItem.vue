@@ -12,7 +12,7 @@
 
     @Component
     export default class DashboardItem extends Vue {
-        @Prop() name;
-        @Prop() id;
+        @Prop() private name:string;
+        @Prop() private id:number;
     }
 </script>

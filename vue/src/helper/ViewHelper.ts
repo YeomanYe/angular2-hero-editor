@@ -1,4 +1,4 @@
-interface Name {
+export interface Name {
     names:Array<string>,
     ns:string
 }

@@ -10,7 +10,8 @@ export interface Hero {
 let id = 0;
 const STORE_USER_KEY = 'hero-editor-vue-heroes';
 
-const state: Array<Hero> = Storage.getItem(STORE_USER_KEY) || [];
+
+const state: Hero[] | any = Storage.getItem(STORE_USER_KEY) || [];
 
 if(state.length > 0) id = state[state.length - 1].id;
 
@@ -21,8 +22,8 @@ const mutations = {
     },
     delHero(state:Array<Hero>,delId:number){
         let index:number = state.filter(({id,name},index) => {
-            if(id === delId) return index;
-        })[0];
+            if(id === delId) return true;
+        }).map((obj,index) => index)[0];
         state.splice(index,1);
     },
     updateHero(state:Array<Hero>,{name,id}:Hero){

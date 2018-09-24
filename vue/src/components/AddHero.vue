@@ -17,7 +17,10 @@
         @Action('addHero') private addHero;
 
         private add(){
-            this.addHero(this.name);
+            if(this.name.trim()){
+                this.addHero(this.name);
+                this.name = '';
+            }
         }
     }
 </script>

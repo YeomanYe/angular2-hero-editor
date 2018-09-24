@@ -16,7 +16,7 @@
 
 <script lang="ts">
     import Vue from "vue";
-    import {Hero} from '../store/modules/heroes';
+    import {Hero} from '../store';
     import {Component, Prop} from 'vue-property-decorator';
     import {Action} from 'vuex-class';
 
@@ -31,8 +31,10 @@
             this.name = this.hero.name;
         }
         update(){
-            this.hero.name = this.name;
-            this.updateHero(this.hero);
+            if(this.name.trim()) {
+                this.hero.name = this.name;
+                this.updateHero(this.hero);
+            }
         }
         back(){
             this.$router.go(-1);
