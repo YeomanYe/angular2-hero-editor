@@ -1,3 +1,5 @@
+import {Vue} from "vue/types/vue";
+
 export interface Name {
     names:Array<string>,
     ns:string

@@ -11,7 +11,7 @@ let id = 0;
 const STORE_USER_KEY = 'hero-editor-vue-heroes';
 
 
-const state: Hero[] | any = Storage.getItem(STORE_USER_KEY) || [];
+const state: Hero[] = <Hero[]>(Storage.getItem(STORE_USER_KEY) || []);
 
 if(state.length > 0) id = state[state.length - 1].id;
 
