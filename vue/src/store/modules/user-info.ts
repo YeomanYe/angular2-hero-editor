@@ -2,8 +2,8 @@ import {ActionContext, Commit} from "vuex";
 import Storage from '../../helper/Storage';
 
 export interface State {
-    username: string | null,
-    password: string | null
+    username: string | null;
+    password: string | null;
 }
 
 const STORE_USER_KEY = 'hero-editor-vue-userInfo';

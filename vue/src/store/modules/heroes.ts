@@ -3,8 +3,8 @@ import Storage from '../../helper/Storage';
 import {State} from "@/store/modules/user-info";
 
 export interface Hero {
-    id:number,
-    name:string
+    id:number;
+    name:string;
 }
 
 let id = 0;

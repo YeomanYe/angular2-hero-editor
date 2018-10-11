@@ -15,6 +15,6 @@ export default new Vuex.Store({
 });
 
 export interface State {
-    userInfo: UserInfoState,
-    heroes:Array<Hero>
+    userInfo: UserInfoState;
+    heroes:Array<Hero>;
 }
