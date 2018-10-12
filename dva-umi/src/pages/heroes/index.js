@@ -1,20 +1,12 @@
 import React,{Component} from 'react';
+import HeroItem from "../../components/HeroItem";
 export default class Dashboard extends Component{
   render(){
     return (
       <div>
-        <h1 className="cnt-c0">Tour of Heroes</h1>
-        <nav className="cnt-c0">
-          <a className="cnt-c0 active" href="heroes.html">Heroes</a>
-          <a className="cnt-c0" href="dashboard.html">Dashboard</a>
-        </nav>
         <h2 className="cnt-c3">My Heroes</h2>
         <ul className="cnt-c3 heroes">
-          <li className="selected cnt-c3">
-            <span className="cnt-c3 badge">11</span>
-            <span className="cnt-c3">Mr. Nice</span>
-            <button className="cnt-c3 delete">x</button>
-          </li>
+          <HeroItem/>
           <li className="cnt-c3">
             <span className="cnt-c3 badge">12</span>
             <span className="cnt-c3">Narco</span>

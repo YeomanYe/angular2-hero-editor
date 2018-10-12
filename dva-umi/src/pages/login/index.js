@@ -1,6 +1,27 @@
 import React,{Component} from 'react';
-export default class Dashboard extends Component{
+import Link from 'umi/link';
+import {formChangeFactory} from "../../utils/PageUtil";
+import {cAction} from "../../utils/ReduxUtil";
+import {connect} from 'dva';
+
+@connect(null,{
+  login:(name,pass) => cAction('user/login',{name,pass})
+})
+export default class Login extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      name:'',pass:''
+    }
+  }
+
+  login = () => {
+    let {name,pass} = this.state;
+    this.props.login(name,pass);
+  };
+
   render(){
+    let createBind = formChangeFactory(this);
     return (
       <div>
         <div className="message warning">
@@ -10,17 +31,16 @@ export default class Dashboard extends Component{
             </div>
             <form className="login-form">
               <li>
-                <input type="text" className="text user-input" placeholder="admin"/><a href="#" className=" icon user"></a>
+                <input {...createBind('name')} type="text" className="text user-input" placeholder="admin"/><a className=" icon user"></a>
               </li>
-              <div className="clear"></div>
               <li>
-                <input type="password" className="pass-input" placeholder="admin"/> <a href="#" className="icon lock"></a>
+                <input {...createBind('pass')} type="password" className="pass-input" placeholder="admin"/> <a className="icon lock"></a>
               </li>
-              <div className="clear"></div>
+              <Link to={'/dashboard'}>
               <div className="submit">
-                <input type="button" value="Sign in"/>
+                <input onClick={this.login} type="button" value="Sign in"/>
               </div>
-
+              </Link>
             </form>
           </div>
         </div>

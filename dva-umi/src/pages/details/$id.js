@@ -1,13 +1,9 @@
 import React,{Component} from 'react';
 export default class Dashboard extends Component{
   render(){
+    console.log('props',this);
     return (
       <div>
-        <h1 className="cnt-c0">Tour of Heroes</h1>
-        <nav className="cnt-c0">
-          <a className="cnt-c0" href="heroes.html">Heroes</a>
-          <a className="cnt-c0" href="dashboard.html">Dashboard</a>
-        </nav>
         <div className="cnt-c4">
           <h2 className="cnt-c4">Narco details!</h2>
           <div className="cnt-c4">
