@@ -244,7 +244,7 @@ h4.cnt-c1 {
     color: #607d8b;
 }
 
-.grid-pad.cnt-c1 {
+.grid.cnt-c1{
     padding: 10px 0;
     overflow: hidden;
 }

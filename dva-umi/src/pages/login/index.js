@@ -1,8 +1,8 @@
-import React,{Component} from 'react';
-import Link from 'umi/link';
+import React, {Component} from 'react';
 import {formChangeFactory} from "../../utils/PageUtil";
 import {cAction} from "../../utils/ReduxUtil";
 import {connect} from 'dva';
+import router from 'umi/router';
 
 @connect(null,{
   login:(name,pass) => cAction('user/login',{name,pass})
@@ -15,9 +15,10 @@ export default class Login extends Component{
     }
   }
 
-  login = () => {
+  login = async() => {
     let {name,pass} = this.state;
-    this.props.login(name,pass);
+    await this.props.login(name,pass);
+    router.push('/dashboard');
   };
 
   render(){
@@ -36,11 +37,9 @@ export default class Login extends Component{
               <li>
                 <input {...createBind('pass')} type="password" className="pass-input" placeholder="admin"/> <a className="icon lock"></a>
               </li>
-              <Link to={'/dashboard'}>
               <div className="submit">
                 <input onClick={this.login} type="button" value="Sign in"/>
               </div>
-              </Link>
             </form>
           </div>
         </div>

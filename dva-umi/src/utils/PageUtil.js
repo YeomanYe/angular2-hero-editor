@@ -33,8 +33,14 @@ export function formChangeFactory(self) {
     let name = names[names.length - 1];
     return {
       onChange:createOnChange.apply(self,names),
-      value:self[name]
+      value:self.state[name]
     }
   }
 }
 
+export function createEnter(handler) {
+  return e => {
+    // console.log(e.keyCode);
+    e.keyCode === 13 && handler();
+  }
+}
