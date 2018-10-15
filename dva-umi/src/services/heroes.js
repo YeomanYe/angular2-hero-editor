@@ -1,16 +1,29 @@
+import {extractRes, formDel, formGet, formPost, formPut, reqIsSuc} from "../utils/ReqUtil";
+
 export async function addHero({name}) {
-  return parseInt(Math.random() * 100);
+  let resObj = await formPost('/api/addHero',{name});
+  return extractRes(resObj,{}).id;
 }
 
 export async function queryHero() {
-  return [{name:'Tony',id:1},{name:'Tom',id:2},{name:'Jack',id:3},{name:'Wang',id:4}];
+  let resObj = await formGet('/api/queryHero');
+  console.log(resObj);
+  return extractRes(resObj,[]);
 }
 
+export async function queryHeroByName(name) {
+  let resObj = await formGet('/api/queryHeroByName',{name});
+  return extractRes(resObj,[]);
+}
 
 export async function delHero(id) {
-
+  let resObj = await formDel(`/api/delHero/${id}`);
+  return reqIsSuc(resObj);
 }
 
 export async function updateHero({id,name}) {
-
+  let resObj = await formPut('/api/updateHero',{id,name});
+  return reqIsSuc(resObj);
 }
+
+

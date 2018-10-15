@@ -1,4 +1,4 @@
-import {addHero, delHero, queryHero, updateHero} from "../services/heroes";
+import {addHero, delHero, queryHero, queryHeroByName, updateHero} from "../services/heroes";
 import {cAction} from "../utils/ReduxUtil";
 
 export default {
@@ -44,10 +44,12 @@ export default {
   effects: {
     * addEff({payload},{call,put}) {
       let id = yield call(addHero,payload);
+      if(!id) return;
       yield put(cAction('add',{...payload,id}));
     },
     * delEff({payload},{call,put}){
-      yield call(delHero,payload);
+      let isSuc = yield call(delHero,payload);
+      if(!isSuc) return;
       let selectedHero = window.g_app._store.getState().hero.selectedHero;
       if(selectedHero && selectedHero.id === payload) yield put(cAction('selectedHero',null));
       yield put(cAction('del',payload));
@@ -57,12 +59,12 @@ export default {
       yield put(cAction('query',datas));
     },
     * queryByNameEff({payload},{call,put}){
-      let datas = yield call(queryHero,payload);
-      datas = datas.filter(data => data.name.indexOf(payload) >= 0);
+      let datas = yield call(queryHeroByName,payload);
       yield put(cAction('query',datas));
     },
     * updateEff({payload},{call,put}){
-      yield call(updateHero,payload);
+      let isSuc = yield call(updateHero,payload);
+      if(!isSuc) return;
       yield put(cAction('update',payload));
     }
   },

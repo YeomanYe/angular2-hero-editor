@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "dva": "^2.4.0",
+    "es6-promise": "^4.2.5",
+    "isomorphic-fetch": "^2.2.1",
     "umi": "^1.0.0",
     "umi-plugin-dva": "^0.7.1"
   },
