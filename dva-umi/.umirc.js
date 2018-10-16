@@ -1,4 +1,6 @@
 export default {
-  plugins: ['umi-plugin-dva'],
-  disableCSSModules:true
+  plugins: [['umi-plugin-dva',{
+
+  }]],
+  disableCSSModules:true,
 }
